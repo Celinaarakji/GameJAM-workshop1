@@ -4,7 +4,7 @@ Two beginner JavaScript activities: a **25-minute clicker branching exercise**, 
 
 ## Run the starter
 
-Download or clone your pair’s fork (setup below). Open the root `index.html` in your browser and choose an activity. Save edits in your editor, then refresh the browser. The clicker works offline. The Pokémon activity needs internet and initially shows a TODO message until you connect the API.
+Download or clone your pair’s fork (setup below). Open the root `index.html` in your browser and choose an activity. Save edits in your editor, then refresh the browser. The clicker works offline. The Pokémon activity needs internet and already searches for Pokémon; displaying the height is your task.
 
 If opening files directly is blocked by your browser, use your editor’s Live Server extension, or run `python3 -m http.server 8000` from the repository folder and visit http://localhost:8000. Windows may use `py -m http.server 8000`. Stop the server with Ctrl+C. Never put passwords or tokens in these files.
 
@@ -34,7 +34,7 @@ If opening files directly is blocked by your browser, use your editor’s Live S
 
 **Partner A: score multiplier** — branch `feature/multiplier`, file `clicker/multiplier.js`. Complete its one TODO so every click adds **2 points**. Keep the function name. Test: refresh, click three times → score 6.
 
-**Partner B: reset button** — branch `feature/reset`, file `clicker/reset.js`. Complete its one TODO so Reset sets the shared `score` to **0** and updates the displayed score by calling `renderScore()`. Test: click a few times, Reset → 0, then click again → 1 before the multiplier merges (2 afterward). Reset at zero should still work.
+**Partner B: reset button** — branch `feature/reset`, file `clicker/reset.js`. Complete its one TODO so Reset returns the displayed score to **0**. The comments explain the shared score variable and the display function. Test: click a few times, Reset → 0, then click again → 1 before the multiplier merges (2 afterward). Reset at zero should still work.
 
 Each partner runs the following (A uses `feature/multiplier`; B substitutes `feature/reset` and `clicker/reset.js`):
 
@@ -67,21 +67,22 @@ GitHub Desktop equivalent: select main → Fetch/Pull origin → New branch → 
 
 ## Activity 2 · Pokémon Explorer · 30 minutes
 
-Use the **same fork**. Pair program: one person types, the other reads and checks; swap after TODO 1. Start on updated main, create `feature/pokemon-explorer`, and edit only `pokemon/explorer.js`.
+Use the **same fork**. Pair program: one person types, the other reads and checks; swap roles halfway through. Start on updated main, create `feature/pokemon-explorer`, and edit only `pokemon/explorer.js`.
 
 | Time | Work |
 | --- | --- |
-| 0–5 min | Open https://pokeapi.co/api/v2/pokemon/pikachu/ in a browser; find `name`, `height`, and `sprites.front_default` in the JSON. |
-| 5–15 min | Complete TODO 1 in `loadPokemon(query)` using the scaffold’s `url`. |
-| 15–23 min | Swap roles; complete TODO 2 in `showPokemon(pokemon)` and test. |
-| 23–30 min | Push, review, and merge a PR into your own fork’s main; pull and demo. |
+| 0–7 min | Instructor demonstrates a search and walks through request → JSON → display. |
+| 7–12 min | Search for different Pokémon. Open https://pokeapi.co/api/v2/pokemon/pikachu/ and find `name` and `height`. |
+| 12–22 min | Complete the height TODO in `showPokemon(pokemon)`; swap roles and explain your change. |
+| 22–30 min | Test, push, review, and merge a PR into your own fork’s main; pull and demo. |
 
-An **API** lets your page ask another service for data. **JSON** is the data format returned. `fetch(url)` starts a request; `await` waits for it. The HTTP response has an `ok` flag. Its `.json()` method reads the response body as a JavaScript object. Both operations are asynchronous; `loadPokemon` is already marked `async`.
+An **API** lets your page ask another service for data. **JSON** is the data format returned. The request code is provided: the instructor will demonstrate `loadPokemon` before you begin. You do not need to write the request code.
 
-- **TODO 1:** request the existing `url`; keep the response in a variable. If its `ok` flag is false, throw an Error with a helpful message. Return the parsed JSON. Replace the temporary TODO error. Use `await` with the asynchronous operations.
-- **TODO 2:** assign the returned object’s `name` property to `nameText.textContent`. The image and height display are already wired up.
+In `showPokemon`, the working name display is your example: `pokemon.name` reads a value from the returned object, and `nameText.textContent` changes the text on the page.
 
-The form, loading message, error handling, normalized input, and page-session cache are provided. Only two TODOs are required. Reference: https://pokeapi.co/docs/v2/#pokemon. PokéAPI needs no API key. Repeated successful searches reuse cached data while this page is open.
+**Your task:** replace the question mark in the height display with the Pokémon’s height in metres. Read the comment about the API’s height units and use the name display as a pattern. Keep the starter valid JavaScript as you work; there are no blank syntax placeholders.
+
+The form, image, loading message, error handling, normalized input, and page-session cache are provided. There is **one required TODO**. Reference: https://pokeapi.co/docs/v2/#pokemon. PokéAPI needs no API key. Repeated successful searches reuse cached data while this page is open.
 
 ### Test your explorer
 
@@ -105,8 +106,8 @@ Commit `pokemon/explorer.js`, push `feature/pokemon-explorer`, and use the same 
 | Push rejected because remote changed | Commit local work, then `git pull --rebase origin YOUR_BRANCH`; ask the instructor for help if a conflict appears. Avoid force pushing. |
 | Merge conflict | Ask the instructor. Edit the marked section to keep the intended code, remove conflict markers, test, then commit the resolution. Separate clicker files should avoid conflicts. |
 | Page unchanged | Save the correct file, refresh, and check you opened the right clone and branch. Open browser Developer Tools → Console for errors. |
-| Reset does nothing / explorer says TODO | Those are the intended unfinished features. Find the TODO in your assigned file. |
-| Pokémon search fails | Check spelling, internet, and the API link above. Finish TODO 1 and check Console. Some Pokémon have special hyphenated names. |
+| Reset does nothing / height shows ? | Those are the intended unfinished features. Find the TODO in your assigned file. Pokémon names and images should work immediately. |
+| Pokémon search fails | Check spelling, internet, and the API link above. Check Console for errors. Some Pokémon have special hyphenated names. |
 | Port 8000 is busy | Use `python3 -m http.server 8001` and visit http://localhost:8001. |
 | Git is unavailable | Use GitHub Desktop, or edit each file on GitHub on your feature branch and use Download ZIP to test that branch locally. |
 

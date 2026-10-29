@@ -10,16 +10,25 @@ const cache = new Map(); // Reuse successful searches during this page visit.
 
 async function loadPokemon(query) {
   const url = `https://pokeapi.co/api/v2/pokemon/${encodeURIComponent(query)}/`;
-  // TODO 1: request url with fetch, check response.ok, then return response.json().
-  // A response with ok === false should throw new Error('Pokémon not found.');
-  // Replace the temporary error below with your code.
-  throw new Error('TODO 1: connect the API in explorer.js.');
+  // fetch asks the API for data about the Pokémon in the URL.
+  const response = await fetch(url);
+  // A response can arrive even when that Pokémon does not exist.
+  if (!response.ok) {
+    throw new Error('Pokémon not found.');
+  }
+  // JSON turns the response data into an object our code can read.
+  return await response.json();
 }
 
 function showPokemon(pokemon) {
-  // TODO 2: show pokemon.name by assigning it to nameText.textContent.
-  nameText.textContent = 'TODO 2: show the Pokémon name';
-  heightText.textContent = `${pokemon.height / 10} m`;
+  // pokemon holds the data returned by the API.
+  // textContent controls the text shown inside an element on the page.
+  nameText.textContent = pokemon.name;
+
+  // TODO: display the Pokémon's height instead of the question mark.
+  // pokemon.height is its height in decimetres (10 decimetres = 1 metre).
+  heightText.textContent = '?';
+
   const sprite = pokemon.sprites.front_default;
   image.hidden = !sprite;
   if (sprite) {
@@ -51,9 +60,7 @@ form.addEventListener('submit', async (event) => {
     showPokemon(pokemon);
     statusText.textContent = 'Found it! Try another Pokémon.';
   } catch (error) {
-    statusText.textContent = error.message.startsWith('TODO')
-      ? error.message
-      : 'Could not find that Pokémon. Check the spelling and your internet connection, then try again.';
+    statusText.textContent = 'Could not find that Pokémon. Check the spelling and your internet connection, then try again.';
   } finally {
     searchButton.disabled = false;
   }
