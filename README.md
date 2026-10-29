@@ -67,7 +67,7 @@ GitHub Desktop equivalent: select main → Fetch/Pull origin → New branch → 
 
 ## Activity 2 · Pokémon Explorer · 30 minutes
 
-Use the **same fork**. Pair program: one person types, the other reads and checks; swap roles halfway through. Start on updated main, create `feature/pokemon-explorer`, and edit only `pokemon/explorer.js`.
+Use the **same fork**. Pair program: one person types, the other reads and checks; swap roles halfway through. Start on updated main, create `feature/pokemon-explorer`, and edit only `pokemon/explorer.js`. The optional challenge display elements and Random button are already in the HTML.
 
 | Time | Work |
 | --- | --- |
@@ -84,6 +84,19 @@ In `showPokemon`, the working name display is your example: `pokemon.name` reads
 
 The form, image, loading message, error handling, normalized input, and page-session cache are provided. There is **one required TODO**. Reference: https://pokeapi.co/docs/v2/#pokemon. PokéAPI needs no API key. Repeated successful searches reuse cached data while this page is open.
 
+### Finished early? Choose a challenge
+
+The numbered optional TODOs are in `pokemon/explorer.js`. Work through as many as you like; you do not need to finish them all. Question marks and an inactive Random button are intentional until you implement them. Commented syntax examples use placeholder field names: adapt them using the actual API response, rather than copying them unchanged.
+
+| Challenge | Goal | Check with pikachu |
+| --- | --- | --- |
+| 2 · Weight | Display weight in kilograms; the API uses hectograms. | 6 kg |
+| 3 · Pokédex number | Find and display the numeric identifier in the response. | 25 |
+| 4 · First type | Explore an array and a nested object to display the first type. | electric |
+| 5 · Random search | Pick an integer from 1 to 151, put it in the input, and submit the existing form. | Repeated clicks search valid IDs and update the card. |
+
+For the random challenge, reuse the existing form submission so loading, errors, and caching still work. Test the button with a keyboard too. If you finish everything, explain your code to your partner and try a Pokémon with two types.
+
 ### Test your explorer
 
 - `pikachu` shows its name, sprite (if provided), and height of 0.4 m.
@@ -93,7 +106,7 @@ The form, image, loading message, error handling, normalized input, and page-ses
 - With internet disabled, an uncached search shows an error. Reconnect and retry. A previously cached search may still succeed.
 - Press Enter in the input to search; try navigating with Tab.
 
-Commit `pokemon/explorer.js`, push `feature/pokemon-explorer`, and use the same PR steps above. Both partners then update main. Optional if finished early: change the page colors or add a description of what an API does to the README.
+Commit `pokemon/explorer.js`, push `feature/pokemon-explorer`, and use the same PR steps above. Both partners then update main. Choose an optional challenge below if you finish early.
 
 ## Troubleshooting
 

@@ -6,6 +6,10 @@ const result = document.querySelector('#result');
 const nameText = document.querySelector('#pokemon-name');
 const image = document.querySelector('#pokemon-image');
 const heightText = document.querySelector('#pokemon-height');
+const weightText = document.querySelector('#pokemon-weight');
+const numberText = document.querySelector('#pokemon-number');
+const typeText = document.querySelector('#pokemon-type');
+const randomButton = document.querySelector('#random-button');
 const cache = new Map(); // Reuse successful searches during this page visit.
 
 async function loadPokemon(query) {
@@ -27,7 +31,23 @@ function showPokemon(pokemon) {
 
   // TODO: display the Pokémon's height instead of the question mark.
   // pokemon.height is its height in decimetres (10 decimetres = 1 metre).
+  // Syntax example — adapt the attribute and divisor; this is not a real API field:
+  // heightText.textContent = (pokemon.attribute / divisor) + ' m';
   heightText.textContent = '?';
+
+  // OPTIONAL TODO 2: display weight in kilograms.
+  // Find the field in the API response. 10 hectograms = 1 kilogram.
+  // weightText.textContent = (pokemon.attribute / divisor) + ' kg';
+  weightText.textContent = '?';
+
+  // OPTIONAL TODO 3: display the Pokémon's Pokédex number.
+  // numberText.textContent = pokemon.attribute;
+  numberText.textContent = '?';
+
+  // OPTIONAL TODO 4: display its first type (for example, electric).
+  // types is an array. [0] reads its first item, which contains a type object.
+  // Syntax example for nested data: object.list[0].detail.attribute
+  typeText.textContent = '?';
 
   const sprite = pokemon.sprites.front_default;
   image.hidden = !sprite;
@@ -64,4 +84,13 @@ form.addEventListener('submit', async (event) => {
   } finally {
     searchButton.disabled = false;
   }
+});
+
+// OPTIONAL TODO 5: make the Random Pokémon button search for an ID from 1 to 151.
+// queryInput.value is the text in the search box.
+// Math.random() produces a number from 0 up to (but not including) 1.
+// Math.floor(number) rounds down. form.requestSubmit() submits the search form.
+// Syntax example with a different range: Math.floor(Math.random() * 6) + 1
+randomButton.addEventListener('click', () => {
+  // Your random search code goes here.
 });
