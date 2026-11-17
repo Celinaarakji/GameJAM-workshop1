@@ -6,4 +6,6 @@
 // refreshLives();
 function resetScore() {
   // TODO: make the Reset button reset the score shown on the page.
+ score *= 0 ; 
+ renderScore();
 }
